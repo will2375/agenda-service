@@ -1,4 +1,4 @@
-package com.agendaservice.agenda.model;
+package com.agendaservice.agenda.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -7,13 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
 @Entity
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Pasciente {
+public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +25,10 @@ public class Pasciente {
     private String email;
     @Column
     private String cpf;
+    @Column
+    private String endereco;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-    private List<Agenda> agenda;
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    private List<Agenda> agendas;
 }
